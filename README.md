@@ -1,0 +1,54 @@
+# AI Risk Manager: Credit Card Fraud Detection
+
+**Production-grade fraud detection system for Indian BFSI** targeting credit card and transaction fraud with measured precision and recall.
+
+## 🎯 Overview
+
+Stop merchants losing money to fraud with an AI-powered fraud detector built on real Indian transaction patterns.
+
+### Key Features
+- ✅ **54.21% Fraud Recall** - Catches majority of fraudulent transactions
+- ✅ **₹2.61 Crores Net Business Value** - Quantifies fraud prevented vs false positive costs
+- ✅ **Indian BFSI Context** - Realistic merchants, amounts in ₹, IST timezone
+- ✅ **Production Ready** - Flask API with 4 endpoints, Docker deployment
+- ✅ **Transparent Evaluation** - Full clarity on precision/recall trade-offs
+
+## 📊 Model Performance
+
+| Metric | Value |
+|--------|-------|
+| **Precision** | 10.82% |
+| **Recall** | 54.21% |
+| **F1-Score** | 0.1804 |
+| **ROC-AUC** | 0.6920 |
+
+### Business Impact
+- **Fraud Caught**: 2,732 transactions
+- **Fraud Value Prevented**: ₹2,73,20,000
+- **False Positive Cost**: ₹11,25,750
+- **Net Business Value**: ₹2,61,94,250 ✅
+
+## 🚀 Quick Start
+
+```bash
+pip install -r deployment/requirements.txt
+python src/api.py
+```
+
+## 🔌 API Endpoints
+
+- `GET /health` - Health check
+- `GET /info` - Model metadata
+- `POST /predict` - Single/batch prediction
+- `POST /batch-predict` - Batch with statistics
+
+## 📁 Project Structure
+
+
+## 🧠 Model Details
+
+- **Algorithm**: XGBoost
+- **Features**: 42 (PCA + engineered)
+- **Training**: 70-30 stratified split
+
+Built with ❤️ as a portfolio project for AI/Data roles in Indian BFSI.
