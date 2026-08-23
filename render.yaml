@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: ai-risk-manager
+    env: python
+    pythonVersion: 3.11
+    buildCommand: pip install -r deployment/requirements.txt
+    startCommand: gunicorn -w 4 -b 0.0.0.0:8000 src.api:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
