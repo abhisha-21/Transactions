@@ -2,7 +2,7 @@
 
 **Production-grade fraud detection system for Indian BFSI** targeting credit card and transaction fraud with measured precision and recall.
 
-## 🎯 Overview
+##  Overview
 
 Stop merchants losing money to fraud with an AI-powered fraud detector built on real Indian transaction patterns.
 
@@ -13,7 +13,7 @@ Stop merchants losing money to fraud with an AI-powered fraud detector built on 
 - ✅ **Production Ready** - Flask API with 4 endpoints, Docker deployment
 - ✅ **Transparent Evaluation** - Full clarity on precision/recall trade-offs
 
-## 📊 Model Performance
+##  Model Performance
 
 | Metric | Value |
 |--------|-------|
@@ -26,16 +26,16 @@ Stop merchants losing money to fraud with an AI-powered fraud detector built on 
 - **Fraud Caught**: 2,732 transactions
 - **Fraud Value Prevented**: ₹2,73,20,000
 - **False Positive Cost**: ₹11,25,750
-- **Net Business Value**: ₹2,61,94,250 ✅
+- **Net Business Value**: ₹2,61,94,250 
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 pip install -r deployment/requirements.txt
 python src/api.py
 ```
 
-## 🔌 API Endpoints
+##  API Endpoints
 
 - `GET /health` - Health check
 - `GET /info` - Model metadata
@@ -45,10 +45,9 @@ python src/api.py
 ## 📁 Project Structure
 
 
-## 🧠 Model Details
+##  Model Details
 
 - **Algorithm**: XGBoost
 - **Features**: 42 (PCA + engineered)
 - **Training**: 70-30 stratified split
 
-Built with ❤️ as a portfolio project for AI/Data roles in Indian BFSI.
