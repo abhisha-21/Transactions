@@ -42,8 +42,6 @@ python src/api.py
 - `POST /predict` - Single/batch prediction
 - `POST /batch-predict` - Batch with statistics
 
-## 📁 Project Structure
-
 
 ##  Model Details
 
