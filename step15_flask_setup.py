@@ -12,17 +12,10 @@ print("=" * 70)
 print("STEP 1: Flask Setup & Load Models")
 print("=" * 70)
 
-# ============================================================
-# INITIALIZE FLASK APP
-# ============================================================
-
 app = Flask(__name__)
 
-print("\n[OK] Flask app initialized")
+print("\n Flask app initialized")
 
-# ============================================================
-# SETUP LOGGING
-# ============================================================
 
 logging.basicConfig(
     level=logging.INFO,
@@ -37,9 +30,6 @@ logger = logging.getLogger(__name__)
 
 logger.info("Starting Flask API Server...")
 
-# ============================================================
-# LOAD MODEL
-# ============================================================
 
 print("\nLoading Models...")
 
@@ -55,10 +45,6 @@ except Exception as e:
     print(f"  [ERROR] Error loading model: {e}")
     raise
 
-# ============================================================
-# LOAD SCALER
-# ============================================================
-
 try:
     with open("scaler.pkl", "rb") as f:
         scaler = pickle.load(f)
@@ -70,10 +56,6 @@ except Exception as e:
     logger.error(f"Failed to load scaler: {e}")
     print(f"  [ERROR] Error loading scaler: {e}")
     raise
-
-# ============================================================
-# LOAD FEATURE NAMES
-# ============================================================
 
 try:
     feature_names = np.load(
@@ -97,11 +79,8 @@ except Exception as e:
     print(f"  [ERROR] Error loading features: {e}")
     raise
 
-print("\n[OK] All models loaded successfully!")
+print("\n All models loaded successfully!")
 
-# ============================================================
-# MERCHANT & CITY MAPPINGS
-# ============================================================
 
 merchants = [
     "swiggy",
@@ -155,9 +134,6 @@ print(f"  Merchants: {len(merchants)}")
 print(f"  Cities: {len(cities)}")
 print(f"  Networks: {len(network_to_code)}")
 
-# ============================================================
-# SAVE GLOBALS FOR USE IN ROUTES
-# ============================================================
 
 app.config["MODEL"] = model
 app.config["SCALER"] = scaler
@@ -168,12 +144,9 @@ app.config["MERCHANT_TO_CODE"] = merchant_to_code
 app.config["CITY_TO_CODE"] = city_to_code
 app.config["NETWORK_TO_CODE"] = network_to_code
 
-print("\n[OK] Configuration complete!")
+print("\n Configuration complete!")
 print("  Ready for endpoints")
 
-# ============================================================
-# HEALTH CHECK ENDPOINT
-# ============================================================
 
 @app.route("/health", methods=["GET"])
 def health():
@@ -186,11 +159,6 @@ def health():
         "model_loaded": True,
         "features": len(feature_names)
     }), 200
-
-
-# ============================================================
-# INFO ENDPOINT
-# ============================================================
 
 @app.route("/info", methods=["GET"])
 def info():
@@ -208,9 +176,6 @@ def info():
     }), 200
 
 
-# ============================================================
-# TEST PREDICTION
-# ============================================================
 
 print("\nTest Prediction (using dummy data):")
 
@@ -247,11 +212,7 @@ except Exception as e:
 
 print("\n" + "=" * 70)
 print("SETUP COMPLETE - ENDPOINTS READY")
-print("=" * 70)
 
-# ============================================================
-# START FLASK SERVER
-# ============================================================
 
 if __name__ == "__main__":
 
