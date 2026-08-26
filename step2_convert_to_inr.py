@@ -8,11 +8,11 @@ print("=" * 70)
 # Load data from Step 1
 df = pd.read_csv('creditcard.csv')
 
-# Exchange rate: 1 USD = 83 INR (approximate)
-USD_TO_INR = 83
+# Exchange rate: 1 USD = 95 INR (approximate)
+USD_TO_INR = 95
 np.random.seed(42)
 
-print(f"\n💱 Using exchange rate: 1 USD = {USD_TO_INR} INR")
+print(f"\n Using exchange rate: 1 USD = {USD_TO_INR} INR")
 
 # Convert to INR
 df['Amount_INR'] = df['Amount'] * USD_TO_INR
@@ -35,5 +35,5 @@ print(df[['Amount', 'Amount_INR']].head(10))
 
 # Save intermediate data
 df.to_csv('data_with_inr.csv', index=False)
-print(f"\n✓ Saved intermediate data to data_with_inr.csv")
-print("✓ Ready for Step 3!")
+print(f"\n Saved intermediate data to data_with_inr.csv")
+print(" Ready for Step 3!")
