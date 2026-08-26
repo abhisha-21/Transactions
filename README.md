@@ -55,9 +55,6 @@ python src/api.py
 - 11-slide overview for recruiters and investors
 - View online or download
 
-**Or download from GitHub:**
-- [Credit_Card_Fraud_Detection.ppt](presentations/Credit_Card_Fraud_Detection.ppt)
-
 **Contents:**
 - Credit card fraud problem (₹2,000+ Cr annually)
 - AI Risk Manager solution (42 features, XGBoost)
