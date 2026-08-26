@@ -1,6 +1,3 @@
-"""
-Step 3 - Single Transaction Prediction Endpoint
-"""
 
 from flask import Flask, request, jsonify
 from datetime import datetime
@@ -14,19 +11,9 @@ print("=" * 70)
 print("STEP 3: Flask Fraud Prediction API")
 print("=" * 70)
 
-
-# ============================================================
-# INITIALIZE FLASK APP
-# ============================================================
-
 app = Flask(__name__)
 
-print("\n[OK] Flask app initialized")
-
-
-# ============================================================
-# SETUP LOGGING
-# ============================================================
+print("\n Flask app initialized")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -39,10 +26,6 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-
-# ============================================================
-# LOAD MODEL
-# ============================================================
 
 print("\nLoading Models...")
 
@@ -60,29 +43,19 @@ except Exception as e:
     logger.error(f"Failed to load model: {e}")
     raise
 
-
-# ============================================================
-# LOAD SCALER
-# ============================================================
-
 try:
 
     with open("scaler.pkl", "rb") as f:
         scaler = pickle.load(f)
 
-    print("  [OK] scaler.pkl loaded")
+    print(" scaler.pkl loaded")
     logger.info("Scaler loaded successfully")
 
 except Exception as e:
 
-    print(f"  [ERROR] Failed to load scaler: {e}")
+    print(f" Failed to load scaler: {e}")
     logger.error(f"Failed to load scaler: {e}")
     raise
-
-
-# ============================================================
-# LOAD FEATURE NAMES
-# ============================================================
 
 try:
 
@@ -104,14 +77,9 @@ try:
 
 except Exception as e:
 
-    print(f"  [ERROR] Failed to load feature names: {e}")
+    print(f" Failed to load feature names: {e}")
     logger.error(f"Failed to load feature names: {e}")
     raise
-
-
-# ============================================================
-# MAPPINGS
-# ============================================================
 
 merchants = [
     "swiggy",
@@ -172,10 +140,6 @@ print(f"  Cities: {len(cities)}")
 print(f"  Networks: {len(networks)}")
 
 
-# ============================================================
-# HEALTH ENDPOINT
-# ============================================================
-
 @app.route("/health", methods=["GET"])
 def health():
 
@@ -203,10 +167,6 @@ def health():
             "error": str(e)
         }), 500
 
-
-# ============================================================
-# INFO ENDPOINT
-# ============================================================
 
 @app.route("/info", methods=["GET"])
 def info():
@@ -237,11 +197,6 @@ def info():
             "error": str(e)
         }), 500
 
-
-# ============================================================
-# HELPER FUNCTION: PREPROCESS TRANSACTION
-# ============================================================
-
 def preprocess_transaction(
     txn_dict,
     merchant_to_code,
@@ -254,10 +209,6 @@ def preprocess_transaction(
     """
 
     features = {}
-
-    # ========================================================
-    # PCA FEATURES V1-V28
-    # ========================================================
 
     for i in range(1, 29):
 
@@ -273,10 +224,6 @@ def preprocess_transaction(
         features[key] = value
 
 
-    # ========================================================
-    # AMOUNT
-    # ========================================================
-
     amount_inr = txn_dict.get("Amount_INR", 1000)
 
     try:
@@ -289,21 +236,11 @@ def preprocess_transaction(
 
     features["Amount_log"] = np.log1p(amount_inr)
 
-
-    # ========================================================
-    # TEMPORAL FEATURES
-    # ========================================================
-
     features["hour_ist"] = txn_dict.get("hour_ist", 12)
     features["day_of_week"] = txn_dict.get("day_of_week", 0)
     features["is_weekend"] = txn_dict.get("is_weekend", 0)
     features["is_night"] = txn_dict.get("is_night", 0)
     features["is_payday"] = txn_dict.get("is_payday", 0)
-
-
-    # ========================================================
-    # VELOCITY FEATURES
-    # ========================================================
 
     features["txn_count_1h"] = txn_dict.get(
         "txn_count_1h",
@@ -320,11 +257,6 @@ def preprocess_transaction(
         3
     )
 
-
-    # ========================================================
-    # LOCATION
-    # ========================================================
-
     city = txn_dict.get(
         "city",
         "Mumbai"
@@ -339,11 +271,6 @@ def preprocess_transaction(
         "city_changes_24h",
         0
     )
-
-
-    # ========================================================
-    # DEVICE
-    # ========================================================
 
     features["device_risk_score"] = txn_dict.get(
         "device_risk_score",
@@ -360,11 +287,6 @@ def preprocess_transaction(
         0
     )
 
-
-    # ========================================================
-    # MERCHANT
-    # ========================================================
-
     merchant = txn_dict.get(
         "merchant_category",
         "swiggy"
@@ -374,11 +296,6 @@ def preprocess_transaction(
         merchant,
         0
     )
-
-
-    # ========================================================
-    # CREATE DATAFRAME IN EXACT FEATURE ORDER
-    # ========================================================
 
     df = pd.DataFrame([features])
 
@@ -394,18 +311,10 @@ def preprocess_transaction(
     return df
 
 
-# ============================================================
-# PREDICTION ENDPOINT
-# ============================================================
-
 @app.route("/predict", methods=["POST"])
 def predict():
 
     try:
-
-        # ====================================================
-        # GET JSON DATA
-        # ====================================================
 
         data = request.get_json(silent=True)
 
@@ -419,11 +328,6 @@ def predict():
                 "status": "error",
                 "error": "Request body must contain JSON"
             }), 400
-
-
-        # ====================================================
-        # CHECK TRANSACTIONS
-        # ====================================================
 
         if "transactions" not in data:
 
@@ -471,11 +375,6 @@ def predict():
             f"{len(transactions)} transaction(s)"
         )
 
-
-        # ====================================================
-        # PREPROCESS
-        # ====================================================
-
         processed_txns = []
 
         for txn in transactions:
@@ -506,18 +405,7 @@ def predict():
             processed_txns,
             ignore_index=True
         )
-
-
-        # ====================================================
-        # SCALE
-        # ====================================================
-
         X_scaled = scaler.transform(X)
-
-
-        # ====================================================
-        # PREDICT
-        # ====================================================
 
         predictions = model.predict(X_scaled)
 
@@ -525,10 +413,6 @@ def predict():
             X_scaled
         )
 
-
-        # ====================================================
-        # FORMAT RESULTS
-        # ====================================================
 
         results = []
 
@@ -580,10 +464,6 @@ def predict():
         )
 
 
-        # ====================================================
-        # RETURN RESPONSE
-        # ====================================================
-
         return jsonify({
 
             "status": "success",
@@ -611,11 +491,6 @@ def predict():
             "error": str(e)
         }), 500
 
-
-# ============================================================
-# ROOT ENDPOINT
-# ============================================================
-
 @app.route("/", methods=["GET"])
 def home():
 
@@ -633,11 +508,6 @@ def home():
             "/predict"
         ]
     }), 200
-
-
-# ============================================================
-# START SERVER
-# ============================================================
 
 if __name__ == "__main__":
 
