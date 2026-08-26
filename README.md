@@ -62,5 +62,7 @@ python src/api.py
 - Technical architecture
 - 2 AM debugging story
 - Roadmap for improvements
+# Pitch Recording
+https://drive.google.com/uc?id=1qwdAnpBoGvRMfjbEFURX2zOhs4UOa-Fj&export=download
 
 
