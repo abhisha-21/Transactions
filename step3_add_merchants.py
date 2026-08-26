@@ -29,7 +29,7 @@ merchants = {
 }
 
 merchant_list = list(merchants.keys())
-print(f"\n🏪 Added {len(merchants)} merchant categories:")
+print(f"\n Added {len(merchants)} merchant categories:")
 for m in merchant_list:
     print(f"  • {m}")
 
@@ -41,5 +41,4 @@ print(df['merchant_category'].value_counts())
 
 # Save
 df.to_csv('data_with_merchants.csv', index=False)
-print(f"\n✓ Saved to data_with_merchants.csv")
-print("✓ Ready for Step 4!")
+print(f"\n Saved to data_with_merchants.csv")
