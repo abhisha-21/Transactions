@@ -36,4 +36,4 @@ print(df[['Amount', 'Amount_INR']].head(10))
 # Save intermediate data
 df.to_csv('data_with_inr.csv', index=False)
 print(f"\n Saved intermediate data to data_with_inr.csv")
-print(" Ready for Step 3!")
+
