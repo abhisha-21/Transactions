@@ -63,6 +63,6 @@ python src/api.py
 - 2 AM debugging story
 - Roadmap for improvements
 # Pitch Recording
-https://drive.google.com/uc?id=1qwdAnpBoGvRMfjbEFURX2zOhs4UOa-Fj&export=download
+https://drive.google.com/uc?id=1YpEv-Qw6xz8B5edeNuD73Tk2bJSb9JYD&export=download
 
 
