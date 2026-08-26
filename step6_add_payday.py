@@ -11,16 +11,14 @@ df = pd.read_csv('data_with_temporal.csv')
 payday_dates = [1, 5, 15, 25]
 df['is_payday'] = df['day_of_month'].isin(payday_dates).astype(int)
 
-print(f"\n💰 Indian payday pattern added")
+print(f"\n Indian payday pattern added")
 print(f"  Payday dates: {payday_dates}")
 
 print(f"\nPayday distribution:")
 print(f"  Payday: {(df['is_payday']==1).sum():,} transactions")
 print(f"  Non-payday: {(df['is_payday']==0).sum():,} transactions")
 
-# Note: Fraud is often higher on paydays (people have more money)
-print(f"\n📊 Insight: Monitor fraud spikes on paydays")
+print(f"\n Insight: Monitor fraud spikes on paydays")
 
 df.to_csv('data_with_payday.csv', index=False)
-print(f"\n✓ Saved to data_with_payday.csv")
-print("✓ Ready for Step 7!")
+print(f"\n Saved to data_with_payday.csv")
