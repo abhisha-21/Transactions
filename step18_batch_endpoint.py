@@ -1,7 +1,3 @@
-"""
-Step 18 - Batch Prediction Endpoint
-"""
-
 from flask import request, jsonify
 from datetime import datetime
 import numpy as np
@@ -22,10 +18,6 @@ from step17_predict_endpoint import (
 
 logger = logging.getLogger(__name__)
 
-
-# ============================================================
-# BATCH PREDICTION ENDPOINT
-# ============================================================
 
 @app.route("/batch-predict", methods=["POST"])
 def batch_predict():
@@ -79,10 +71,6 @@ def batch_predict():
         )
 
 
-        # ====================================================
-        # PREPROCESS
-        # ====================================================
-
         processed_txns = []
 
         for i, txn in enumerate(transactions):
@@ -115,28 +103,13 @@ def batch_predict():
             ignore_index=True
         )
 
-
-        # ====================================================
-        # SCALE
-        # ====================================================
-
         X_scaled = scaler.transform(X)
-
-
-        # ====================================================
-        # PREDICT
-        # ====================================================
 
         predictions = model.predict(X_scaled)
 
         probabilities = model.predict_proba(
             X_scaled
         )
-
-
-        # ====================================================
-        # CALCULATE STATISTICS
-        # ====================================================
 
         total_transactions = len(transactions)
 
@@ -195,11 +168,6 @@ def batch_predict():
             avg_fraud_prob = 0.0
             max_detected_fraud_prob = 0.0
 
-
-        # ====================================================
-        # RESPONSE
-        # ====================================================
-
         return jsonify({
 
             "status": "success",
@@ -253,11 +221,6 @@ def batch_predict():
             "status": "error",
             "error": str(e)
         }), 500
-
-
-# ============================================================
-# START SERVER
-# ============================================================
 
 if __name__ == "__main__":
 
