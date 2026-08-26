@@ -49,6 +49,21 @@ python src/api.py
 - **Features**: 42 (PCA + engineered)
 - **Training**: 70-30 stratified split
 
-## I have also created a power point presentation on this entire project for better understanding
-Here's the link: https://vitacin-my.sharepoint.com/:p:/g/personal/abhisha_chakrabarti2022_vitstudent_ac_in/IQBrB_zVvxNTSJd2tC_T6JTGAYcTIozuqZ031uS_H_GQXjE?e=7EuK9e
+## Presentations
+
+ **[AI Risk Manager Pitch Deck (View Online)](https://vitacin-my.sharepoint.com/:p:/g/personal/abhisha_chakrabarti2022_vitstudent_ac_in/IQBrB_zVvxNTSJd2tC_T6JTGAYcTIozuqZ031uS_H_GQXjE?e=7EuK9e)**
+- 11-slide overview for recruiters and investors
+- View online or download
+
+**Or download from GitHub:**
+- [Credit_Card_Fraud_Detection.ppt](presentations/Credit_Card_Fraud_Detection.ppt)
+
+**Contents:**
+- Credit card fraud problem (₹2,000+ Cr annually)
+- AI Risk Manager solution (42 features, XGBoost)
+- Business results (₹2.61 Cr profit)
+- Technical architecture
+- 2 AM debugging story
+- Roadmap for improvements
+
 
