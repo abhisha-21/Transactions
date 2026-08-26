@@ -50,5 +50,5 @@ python src/api.py
 - **Training**: 70-30 stratified split
 
 ## I have also created a power point presentation on this entire project for better understanding
-Here's the link: https://docs.google.com/presentation/d/1Bhv87euFmpmtg18NKy62WaX9v7qajM5a/edit?usp=sharing&ouid=112087920554582579838&rtpof=true&sd=true
+Here's the link: https://vitacin-my.sharepoint.com/:p:/g/personal/abhisha_chakrabarti2022_vitstudent_ac_in/IQBrB_zVvxNTSJd2tC_T6JTGAYcTIozuqZ031uS_H_GQXjE?e=7EuK9e
 
