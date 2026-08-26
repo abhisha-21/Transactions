@@ -33,4 +33,4 @@ print(df['network_type'].value_counts())
 
 df.to_csv('data_with_device_risk.csv', index=False)
 print(f"\n Saved to data_with_device_risk.csv")
-print(" Ready for Step 9!")
+
