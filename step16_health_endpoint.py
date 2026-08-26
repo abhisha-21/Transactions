@@ -1,7 +1,3 @@
-"""
-Step 2 - Add Health Check and Info Endpoints
-"""
-
 from flask import Flask, jsonify
 from datetime import datetime
 import numpy as np
@@ -13,19 +9,9 @@ print("=" * 70)
 print("STEP 2: Flask Health Check & Info Endpoints")
 print("=" * 70)
 
-
-# ============================================================
-# INITIALIZE FLASK APP
-# ============================================================
-
 app = Flask(__name__)
 
-print("\n[OK] Flask app initialized")
-
-
-# ============================================================
-# SETUP LOGGING
-# ============================================================
+print("\n Flask app initialized")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -40,10 +26,6 @@ logger = logging.getLogger(__name__)
 
 logger.info("Starting Flask API Server...")
 
-
-# ============================================================
-# LOAD MODEL
-# ============================================================
 
 print("\nLoading Models...")
 
@@ -61,11 +43,6 @@ except Exception as e:
     logger.error(f"Failed to load model: {e}")
     raise
 
-
-# ============================================================
-# LOAD SCALER
-# ============================================================
-
 try:
 
     with open("scaler.pkl", "rb") as f:
@@ -81,10 +58,6 @@ except Exception as e:
     raise
 
 
-# ============================================================
-# LOAD FEATURE NAMES
-# ============================================================
-
 try:
 
     feature_names = np.load(
@@ -96,7 +69,7 @@ try:
     feature_names = list(feature_names)
 
     print(
-        f"  [OK] feature_names.npy loaded "
+        f" feature_names.npy loaded "
         f"({len(feature_names)} features)"
     )
 
@@ -106,14 +79,10 @@ try:
 
 except Exception as e:
 
-    print(f"  [ERROR] Failed to load feature names: {e}")
+    print(f" Failed to load feature names: {e}")
     logger.error(f"Failed to load feature names: {e}")
     raise
 
-
-# ============================================================
-# MERCHANT MAPPINGS
-# ============================================================
 
 merchants = [
     "swiggy",
@@ -134,10 +103,6 @@ merchants = [
 ]
 
 
-# ============================================================
-# CITY MAPPINGS
-# ============================================================
-
 cities = [
     "Mumbai",
     "Delhi",
@@ -152,10 +117,6 @@ cities = [
 ]
 
 
-# ============================================================
-# NETWORK MAPPINGS
-# ============================================================
-
 networks = [
     "wifi",
     "4g",
@@ -163,9 +124,6 @@ networks = [
 ]
 
 
-# ============================================================
-# HEALTH CHECK ENDPOINT
-# ============================================================
 
 @app.route("/health", methods=["GET"])
 def health():
@@ -201,10 +159,6 @@ def health():
         }), 500
 
 
-# ============================================================
-# INFO ENDPOINT
-# ============================================================
-
 @app.route("/info", methods=["GET"])
 def info():
     """
@@ -238,10 +192,6 @@ def info():
         }), 500
 
 
-# ============================================================
-# ROOT ENDPOINT
-# ============================================================
-
 @app.route("/", methods=["GET"])
 def home():
     """
@@ -256,11 +206,6 @@ def home():
             "/info"
         ]
     }), 200
-
-
-# ============================================================
-# START SERVER
-# ============================================================
 
 if __name__ == "__main__":
 
