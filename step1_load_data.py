@@ -16,5 +16,3 @@ print(df.head(3))
 print(f"\nDataset info:")
 print(df.info())
 
-# Save for next step
-print("\n Ready for Step 2!")
