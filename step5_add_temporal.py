@@ -25,7 +25,7 @@ df['day_of_month'] = df['datetime_ist'].dt.day  # 1-31
 df['is_weekend'] = df['day_of_week'].isin([5, 6]).astype(int)  # Saturday, Sunday
 df['is_night'] = ((df['hour_ist'] >= 22) | (df['hour_ist'] <= 5)).astype(int)  # Night = 10 PM - 5 AM
 
-print(f"\n⏰ Temporal features added:")
+print(f"\n Temporal features added:")
 print(f"  • Hour of day (0-23 IST)")
 print(f"  • Day of week (0-6)")
 print(f"  • Is weekend (0/1)")
@@ -42,5 +42,4 @@ print(f"  Weekday: {(df['is_weekend']==0).sum():,} transactions")
 print(f"  Weekend: {(df['is_weekend']==1).sum():,} transactions")
 
 df.to_csv('data_with_temporal.csv', index=False)
-print(f"\n✓ Saved to data_with_temporal.csv")
-print("✓ Ready for Step 6!")
+print(f"\n Saved to data_with_temporal.csv")
